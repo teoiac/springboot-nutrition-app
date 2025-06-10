@@ -59,7 +59,7 @@ const HomePage: React.FC = () => {
     <div className="max-w-6xl mx-auto px-4 space-y-6">
       <Card className="mb-6 px-2">
         <CardHeader>
-          <h1 className="text-2xl font-bold">Blog Posts</h1>
+          <h1 className="text-2xl font-bold">Postări</h1>
         </CardHeader>
         <CardBody>
           <div className="flex flex-col gap-4">                     
@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
                 cursor: "w-full bg-primary",
               }}
             >
-              <Tab key="all" title="All Posts" />
+              <Tab key="all" title="Toate postările" />
               {categories.map((category) => (
                 <Tab 
                   key={category.id} 

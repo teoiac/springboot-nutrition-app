@@ -15,7 +15,17 @@ import {
   DropdownMenu,
   DropdownItem, Image,
 } from '@nextui-org/react';
-import {Plus, Edit3, LogOut, BookDashed, Tag, ListTree, MessageSquareText} from 'lucide-react';
+import {
+  Plus,
+  Edit3,
+  LogOut,
+  BookDashed,
+  Tag,
+  ListTree,
+  MessageSquareText,
+  NotebookPen,
+  NotebookTabs
+} from 'lucide-react';
 import logo from '../../public/logo-blog.png'
 
 interface NavBarProps {
@@ -41,7 +51,7 @@ const NavBar: React.FC<NavBarProps> = ({
     { name: 'Acasă', path: '/' },
     { name: 'Despre mine', path: '/despre-mine' },
     { name: 'Servicii', path: '/servicii' },
-    { name: 'Programări', path: '/programari' },
+    { name: 'Programări', path: '/booking' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -159,8 +169,22 @@ const NavBar: React.FC<NavBarProps> = ({
                               >
                               <Link to="/contact-messages">Mesaje de Contact</Link>
                             </DropdownItem>
+                            <DropdownItem
+                                key="booking-requests"
+                                startContent={<NotebookPen size={19}/>}
+                            >
+                              <Link to="/programarile-mele-admin">Programari</Link>
+                            </DropdownItem>
                           </>
                       ) : null}
+
+                      <DropdownItem
+                          key="status-booking"
+                          startContent={<NotebookTabs  size={16} />}
+                          color="default"
+                      >
+                        <Link to="/programarile-mele">Status Programari</Link>
+                      </DropdownItem>
 
                       <DropdownItem
                           key="logout"

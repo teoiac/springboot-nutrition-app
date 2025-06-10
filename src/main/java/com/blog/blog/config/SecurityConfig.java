@@ -73,6 +73,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/tags/**").permitAll()
                         .requestMatchers("/api/v1/contact").authenticated()
                         .requestMatchers("/api/v1/appointments").authenticated()
+                        .requestMatchers("api/v1/bookings/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())

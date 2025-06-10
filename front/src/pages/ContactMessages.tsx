@@ -104,9 +104,9 @@ const ContactMessagesPage: React.FC = () => {
             <Card className="mb-6">
                 <CardHeader className="flex justify-between items-center">
                     <h1 className="text-2xl font-bold">Contact Messages</h1>
-                    <Chip color="primary" variant="flat">
+                    {unreadCount > 0 && (<Chip color="primary" variant="flat">
                         {unreadCount} unread
-                    </Chip>
+                    </Chip>)}
                 </CardHeader>
                 <CardBody>
                     {error && (

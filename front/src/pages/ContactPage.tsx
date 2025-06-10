@@ -142,24 +142,6 @@ const ContactPage: React.FC = () => {
                                 </div>
 
                                 <Divider />
-
-                                <div>
-                                    <h3 className="font-medium mb-2">Follow Us</h3>
-                                    <div className="flex gap-4">
-                                        <Link isExternal href="#">
-                                            <span className="text-default-600 hover:text-primary">Facebook</span>
-                                        </Link>
-                                        <Link isExternal href="#">
-                                            <span className="text-default-600 hover:text-primary">Twitter</span>
-                                        </Link>
-                                        <Link isExternal href="#">
-                                            <span className="text-default-600 hover:text-primary">Instagram</span>
-                                        </Link>
-                                        <Link isExternal href="#">
-                                            <span className="text-default-600 hover:text-primary">LinkedIn</span>
-                                        </Link>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

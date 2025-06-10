@@ -73,6 +73,27 @@ export interface ContactResponse {
   isRead: boolean;
 }
 
+export interface BookingRequest {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  dateTime: string;
+  message?: string;
+}
+
+export interface BookingResponse {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  dateTime: string;
+  message?: string;
+  confirmed: boolean;
+  createdAt: string;
+}
+
 
 export interface ApiError {
   status: number;
@@ -212,6 +233,35 @@ class ApiService {
       password: user.password
     });
     return response.data;
+  }
+
+  public async createBooking(booking: BookingRequest): Promise<BookingResponse> {
+    const response: AxiosResponse<BookingResponse> = await this.api.post('/bookings', booking);
+    return response.data;
+  }
+
+  public async getUpcomingBookings(): Promise<BookingResponse[]> {
+    const response: AxiosResponse<BookingResponse[]> = await this.api.get('/bookings/upcoming');
+    return response.data;
+  }
+
+  public async getUnconfirmedBookings(): Promise<BookingResponse[]> {
+    const response: AxiosResponse<BookingResponse[]> = await this.api.get('/bookings/unconfirmed');
+    return response.data;
+  }
+
+  public async getBookingsByEmail(email: string): Promise<BookingResponse[]> {
+    const response: AxiosResponse<BookingResponse[]> = await this.api.get(`/bookings/email/${email}`);
+    return response.data;
+  }
+
+  public async confirmBooking(id: string): Promise<BookingResponse> {
+    const response: AxiosResponse<BookingResponse> = await this.api.patch(`/bookings/${id}/confirm`);
+    return response.data;
+  }
+
+  public async cancelBooking(id: string): Promise<void> {
+    await this.api.delete(`/bookings/${id}`);
   }
 
   public async updatePost(id: string, post: UpdatePostRequest): Promise<Post> {

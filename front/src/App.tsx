@@ -13,6 +13,11 @@ import {AuthProvider, useAuth} from "./components/AuthContext";
 import {ProtectedRoute} from "./components/ProtectedRoute.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import ContactMessagesPage from "./pages/ContactMessages.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
+import ServicesPage from "./pages/ServicesPage.tsx";
+import Bookings from "./pages/Bookings.tsx";
+import BookingView from "./pages/BookingView.tsx";
+import BookingUserPage from "./pages/BookingUserPage.tsx";
 function AppContent() {
     const { isAuthenticated, logout, user, isAdmin } = useAuth(); // Add isAdmin here
 
@@ -77,6 +82,12 @@ function AppContent() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/despre-mine" element={<AboutPage/>}/>
+                    <Route path="/booking" element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
+                    <Route path="/servicii" element={<ProtectedRoute><ServicesPage /></ProtectedRoute>} />
+                    <Route path="/programarile-mele-admin" element={<ProtectedRoute adminOnly><BookingView/></ProtectedRoute>} />
+                    <Route path="/programarile-mele" element={<ProtectedRoute><BookingUserPage/></ProtectedRoute>} />
+
                 </Routes>
             </main>
         </BrowserRouter>

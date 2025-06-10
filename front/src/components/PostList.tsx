@@ -121,7 +121,7 @@ const PostList: React.FC<PostListProps> = ({
                       {post.title}
                     </h2>
                     <p className="text-small text-default-500">
-                      by {post.author?.name}
+                      de {post.author?.name}
                     </p>                
                     </div>
                 </CardHeader>
@@ -137,7 +137,7 @@ const PostList: React.FC<PostListProps> = ({
                   </div>
                   <div className="flex items-center gap-1 text-small text-default-500">
                     <Clock size={16} />
-                    {post.readingTime} min read
+                    {post.readingTime} minute
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <Chip
