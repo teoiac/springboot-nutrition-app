@@ -11,6 +11,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage"
 import {AuthProvider, useAuth} from "./components/AuthContext";
 import {ProtectedRoute} from "./components/ProtectedRoute.tsx";
+import ContactPage from "./pages/ContactPage.tsx";
+import ContactMessagesPage from "./pages/ContactMessages.tsx";
 function AppContent() {
     const { isAuthenticated, logout, user, isAdmin } = useAuth(); // Add isAdmin here
 
@@ -63,6 +65,10 @@ function AppContent() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/contact" element={<ContactPage/>}
+                           />
+                    <Route path="/contact-messages" element={<ProtectedRoute adminOnly><ContactMessagesPage/></ProtectedRoute> }
+                           />
                     <Route
                         path="/posts/drafts"
                         element={

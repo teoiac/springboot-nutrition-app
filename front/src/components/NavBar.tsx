@@ -15,7 +15,7 @@ import {
   DropdownMenu,
   DropdownItem, Image,
 } from '@nextui-org/react';
-import { Plus, Edit3, LogOut, BookDashed, Tag, ListTree} from 'lucide-react';
+import {Plus, Edit3, LogOut, BookDashed, Tag, ListTree, MessageSquareText} from 'lucide-react';
 import logo from '../../public/logo-blog.png'
 
 interface NavBarProps {
@@ -153,6 +153,12 @@ const NavBar: React.FC<NavBarProps> = ({
                             >
                               <Link to="/categories">Manager Categorii</Link>
                             </DropdownItem>
+                            <DropdownItem
+                              key="contact-messages"
+                              startContent={<MessageSquareText size={19}/>}
+                              >
+                              <Link to="/contact-messages">Mesaje de Contact</Link>
+                            </DropdownItem>
                           </>
                       ) : null}
 
@@ -165,6 +171,7 @@ const NavBar: React.FC<NavBarProps> = ({
                       >
                         Deconectare
                       </DropdownItem>
+
                     </DropdownMenu>
                   </Dropdown>
                 </NavbarItem>

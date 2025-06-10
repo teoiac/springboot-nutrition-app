@@ -58,6 +58,21 @@ export interface UpdatePostRequest extends CreatePostRequest {
   id: string;
 }
 
+export interface ContactRequest {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export interface ContactResponse {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  createdAt: string;
+  isRead: boolean;
+}
+
 
 export interface ApiError {
   status: number;
@@ -67,6 +82,7 @@ export interface ApiError {
     message: string;
   }>;
 }
+
 
 export enum PostStatus {
   DRAFT = 'DRAFT',
@@ -161,6 +177,31 @@ class ApiService {
 
   public async createPost(post: CreatePostRequest): Promise<Post> {
     const response: AxiosResponse<Post> = await this.api.post('/posts', post);
+    return response.data;
+  }
+
+  public async sendContactMessage(contactRequest: ContactRequest): Promise<ContactResponse> {
+    const response: AxiosResponse<ContactResponse> = await this.api.post('/contact', contactRequest);
+    return response.data;
+  }
+
+  public async getContactMessages(): Promise<ContactResponse[]> {
+    const response: AxiosResponse<ContactResponse[]> = await this.api.get('/contact');
+    return response.data;
+  }
+
+  public async getUnreadMessages(): Promise<ContactResponse[]> {
+    const response: AxiosResponse<ContactResponse[]> = await this.api.get('/contact/unread');
+    return response.data;
+  }
+
+  public async countUnreadMessages(): Promise<number> {
+    const response: AxiosResponse<number> = await this.api.get('/contact/unread/count');
+    return response.data;
+  }
+
+  public async markMessageAsRead(id: string): Promise<ContactResponse> {
+    const response: AxiosResponse<ContactResponse> = await this.api.patch(`/contact/${id}/read`);
     return response.data;
   }
 
