@@ -27,7 +27,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserDetailsService userDetailsService;
 
 
-    private final String secretKey = System.getenv("JWT_SECRET");
+    private static Dotenv dotenv = Dotenv.load();
+    private final String secretKey = dotenv.get("JWT_SECRET");
 
     private final Long jwtExpiryMs = 86400000L; //24h
 
