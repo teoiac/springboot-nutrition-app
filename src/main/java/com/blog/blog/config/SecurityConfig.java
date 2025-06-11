@@ -39,22 +39,27 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository){
         BlogUserDetailsService blogUserDetailsService = new BlogUserDetailsService(userRepository);
-        Dotenv dotenv = Dotenv.load();
-        String adminEmail = dotenv.get("ADMIN_EMAIL");
-        String adminPassword = dotenv.get("ADMIN_PASSWORD");
 
-        userRepository.findByEmail(adminEmail).orElseGet(() -> {
-            User adminUser = User.builder()
-                    .name("Nico Asaftei")
-                    .email(adminEmail)
-                    .password(passwordEncoder().encode(adminPassword))
-                    .isAdmin(true)
-                    .build();
-            return userRepository.save(adminUser);
-        });
+        String adminEmail = System.getenv("ADMIN_EMAIL");
+        String adminPassword = System.getenv("ADMIN_PASSWORD");
+
+        if (adminEmail != null && adminPassword != null) {
+            userRepository.findByEmail(adminEmail).orElseGet(() -> {
+                User adminUser = User.builder()
+                        .name("Nico Asaftei")
+                        .email(adminEmail)
+                        .password(passwordEncoder().encode(adminPassword))
+                        .isAdmin(true)
+                        .build();
+                return userRepository.save(adminUser);
+            });
+        } else {
+            System.out.println("ADMIN_EMAIL or ADMIN_PASSWORD env vars are missing; skipping admin user creation.");
+        }
 
         return blogUserDetailsService;
     }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
